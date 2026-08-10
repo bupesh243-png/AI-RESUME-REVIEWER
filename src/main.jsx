@@ -9,24 +9,7 @@ function App() {
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [pdffiles,setpdffile] = useState(null);
-  const fileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      const base64 = reader.result.split(",")[1];
-      resolve(base64);
-    };
-
-    reader.onerror = () => {
-      reject(new Error("Failed to read PDF"));
-    };
-
-    reader.readAsDataURL(file);
-  });
-};
-
+  
   const handleReview = async () => {
     setLoading(true);
     setError("");
