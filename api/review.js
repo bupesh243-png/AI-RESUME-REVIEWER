@@ -19,7 +19,7 @@ export default async function handler(request, response) {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const aiResponse = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-3.6-flash",
       contents: `You are an expert resume reviewer. Review the resume below and return:
 1. Three improvement suggestions
 2. Missing skills if any
