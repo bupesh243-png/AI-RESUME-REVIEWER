@@ -16,30 +16,6 @@ function App() {
     setFeedback("");
 
     try {
-      let pdfBase64 = null;
-
-if (pdfFile) {
-  if (pdfFile.size > 10 * 1024 * 1024) {
-    throw new Error("PDF must be smaller than 10 MB.");
-  }
-
-  pdfBase64 = await fileToBase64(pdfFile);
-}
-
-if (!resumeText.trim() && !pdfFile) {
-  throw new Error("Please paste resume text or upload a PDF.");
-}
-
-const response = await fetch("/api/review", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    resumeText,
-    pdfBase64
-  })
-});
       const response = await fetch("/api/review", {
         method: "POST",
         headers: {
