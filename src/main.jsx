@@ -103,6 +103,14 @@ const handlePdfUpload = async (event) => {
 
       <section className="card">
         <label htmlFor="resume">Resume Text</label>
+        <input
+          type="file"
+          accept=".pdf.application/pdf"
+          onchange={handlepdfupload}
+          disabled={pdfloading}
+          />
+        {pdfloading & & <p>Extracting text from PDF...</p>
+          
         <textarea
           id="resume"
           value={resumeText}
