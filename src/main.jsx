@@ -104,8 +104,7 @@ const handlePdfUpload = async (event) => {
           onchange={handlepdfupload}
           disabled={pdfloading}
           />
-        {pdfloading & & <p>Extracting text from PDF...</p>
-          
+      
         <textarea
           id="resume"
           value={resumeText}
