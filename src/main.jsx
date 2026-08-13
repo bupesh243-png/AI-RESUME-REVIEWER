@@ -3,10 +3,6 @@ import { createRoot } from "react-dom/client";
 import * as pdfjslib from "pdfjs-dist";
 import "./style.css";
 
-pdfjslib.globalworkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-  ).toString();
 function App() {
   const [resumeText, setResumeText] = useState(
     "Data Analyst with experience in SQL, Python, Power BI and data visualization. Worked on dashboards and reporting projects."
