@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import * as pdfjslib from "pdfjs-dist";
+import "pdfjs-dist/web/pdf_viewer.css";
 import "./style.css";
 
 function App() {
