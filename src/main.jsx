@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
+import * as pdfjslib from "pdfjs-dist";
 import "./style.css";
 
+pdfjslib.globalworkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+  ).toString();
 function App() {
   const [resumeText, setResumeText] = useState(
     "Data Analyst with experience in SQL, Python, Power BI and data visualization. Worked on dashboards and reporting projects."
@@ -9,6 +14,54 @@ function App() {
   const [feedback, setFeedback] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [pdfLoading, setPdfLoading] = useState(false);
+
+const handlePdfUpload = async (event) => {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  if (file.type !== "application/pdf") {
+    setError("Please select a PDF file.");
+    return;
+  }
+
+  try {
+    setPdfLoading(true);
+    setError("");
+
+    const arrayBuffer = await file.arrayBuffer();
+
+    const pdf = await pdfjsLib.getDocument({
+      data: arrayBuffer
+    }).promise;
+
+    let extractedText = "";
+
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+      const page = await pdf.getPage(pageNumber);
+      const content = await page.getTextContent();
+
+      const pageText = content.items
+        .map((item) => item.str)
+        .join(" ");
+
+      extractedText += pageText + "\n\n";
+    }
+
+    if (!extractedText.trim()) {
+      throw new Error(
+        "No text found in this PDF. Please use a text-based PDF."
+      );
+    }
+
+    setResumeText(extractedText.trim());
+  } catch (err) {
+    setError(err.message || "Failed to read PDF.");
+  } finally {
+    setPdfLoading(false);
+  }
+};
   
   const handleReview = async () => {
     setLoading(true);
