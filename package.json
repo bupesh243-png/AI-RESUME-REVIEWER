@@ -15,7 +15,6 @@
     "react": "latest",
     "react-dom": "latest",
     "@google/genai": "latest",
-    "pdfjs-dist":"4.4.168"
   },
   "devDependencies": {
     "vitest": "latest",
