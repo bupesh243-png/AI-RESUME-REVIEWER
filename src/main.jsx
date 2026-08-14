@@ -138,14 +138,37 @@ function App() {
           Upload Resume PDF
         </label>
 
-        <input
-          id="pdf-upload"
-          type="file"
-          accept=".pdf,application/pdf"
-          onChange={handlePdfUpload}
-          disabled={pdfLoading || loading}
-        />
+        <div className="pdf-upload">
+  <input
+    id="pdf-upload"
+    type="file"
+    accept=".pdf,application/pdf"
+    onChange={handlePdfUpload}
+    disabled={pdfLoading || loading}
+  />
 
+  <label htmlFor="pdf-upload" className="pdf-upload-box">
+    <div className="upload-icon">📄</div>
+
+    <div className="upload-content">
+      <strong>
+        {pdfLoading ? "Reading your resume..." : "Upload your resume"}
+      </strong>
+
+      <span>
+        {pdfLoading
+          ? "Please wait while we extract your resume text"
+          : "Drag & drop your PDF here or click to browse"}
+      </span>
+
+      <small>PDF only • Maximum 5 MB</small>
+    </div>
+
+    <div className="browse-button">
+      Browse PDF
+    </div>
+  </label>
+</div>
         {pdfLoading && (
           <p className="status">
             Reading PDF...
