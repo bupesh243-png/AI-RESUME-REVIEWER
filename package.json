@@ -14,8 +14,7 @@
     "vite": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "@google/genai": "latest",
-    
+    "@google/genai": "latest"   
   },
   "devDependencies": {
     "vitest": "latest",
